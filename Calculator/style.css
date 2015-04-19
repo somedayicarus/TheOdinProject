@@ -1,0 +1,48 @@
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+    font-family:'Lato', 'Droid Sans', helvetica, arial, sans-serif;
+    font-weight:300;
+    font-size:30px;
+    color:#5b5b5b;
+}
+
+
+.container {
+    width:300px;
+    margin:60px auto;
+    padding:20px 10px;
+    background-color:#46eac1;
+    border-radius:4px;
+}
+
+#screen {
+    width:280px;
+    text-align: right;
+    padding:20px 25px;
+    border:1px solid #fff;
+    border-radius:5px;
+}
+
+#clear {
+    width:280px;
+    text-align: right;
+    padding:20px 25px;
+}
+
+
+#num_pad div {
+    width: 65px;
+    display:inline-block;
+    text-align: center;
+    padding:20px 0;
+}
+
+#plus, #minus, #divide, #mult, #point, #equal {
+    color:#fff;
+}

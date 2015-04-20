@@ -3,7 +3,7 @@ var inputs = ["", "", ""];
 var values = [];
 
 
-// math functions
+//basic math functions
 var add = function(a, b) {return a + b;};
 var multiply = function(a, b) {return a * b;};
 var subtract = function(a, b) {return a - b;};
@@ -17,6 +17,11 @@ var divide = function(a, b) {
 };
 
 var equals = function() {
+    if(inputs[0] === "80085" || inputs[2] === "80085") {
+       alert("how mature...");
+        clear();
+}
+    else {
     if (inputs[1] === "+") {
         var sum = add(parseFloat(inputs[0]), parseFloat(inputs[2]));
         clear();
@@ -38,9 +43,12 @@ var equals = function() {
         values.push(quotient);
     }
     display();
+    }
+    
 };
 
- //store and update numbers
+
+ //log number to choseNumbers array onclick
 
 var update = function(values) {
     inputs.push(values);
@@ -48,7 +56,7 @@ var update = function(values) {
 }
 
 var clear = function() {
-    inputs = [];
+    inputs = ["", "", ""];
     values = [];
     display();
 }
@@ -63,53 +71,38 @@ for(var i = 0; i < 10; i++) {
     document.getElementById(n).addEventListener('click', function() {
         values.push(this.innerHTML);
         display();
+        
     });
 }
+//fix with loop 
+var opElements = document.querySelectorAll(".op");
 
-
-//NOT DRY - fix
-
-document.getElementById("point").addEventListener('click', function() {
-    values.push(this.innerHTML);
-    display();
-});
-
-document.getElementById("plus").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
-                                                 
-document.getElementById("div").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
-                                                                                                  
-document.getElementById("minus").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
-
-                                                 
-document.getElementById("mult").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
+for(var i = 0; i < opElements.length; i++) {
+    opElements[i].addEventListener('click', function() {
+        update(values.join(""));
+        update(this.innerHTML);
+        values = [];
+        display();
+    });
+}
                                                 
 document.getElementById("equal").addEventListener('click', function() {
     update(values.join(""));
     values = [];
     equals();
 });
-document.getElementById("clear").addEventListener('click', function() {
-    clear();
+
+document.getElementById("clear").addEventListener('click', function() { clear(); });
+    
+document.getElementById("point").addEventListener('click', function() {
+    values.push(this.innerHTML);
+    display();
 });
+
+
+
+
+
+
 
 

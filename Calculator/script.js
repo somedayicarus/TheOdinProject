@@ -40,7 +40,7 @@ var equals = function() {
     display();
 };
 
- //log number to choseNumbers array onclick
+ //log and update inputs
 
 var update = function(values) {
     inputs.push(values);
@@ -66,40 +66,22 @@ for(var i = 0; i < 10; i++) {
     });
 }
 
+var opElements = document.querySelectorAll(".op");
+
+for(var i = 0; i < opElements.length; i++) {
+    opElements[i].addEventListener('click', function() {
+        update(values.join(""));
+        update(this.innerHTML);
+        values = [];
+        display();
+    });
+}
+
 document.getElementById("point").addEventListener('click', function() {
     values.push(this.innerHTML);
     display();
 });
 
-document.getElementById("plus").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
-                                                 
-document.getElementById("div").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
-                                                                                                  
-document.getElementById("minus").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
-
-                                                 
-document.getElementById("mult").addEventListener('click', function() {
-    update(values.join(""));
-    update(this.innerHTML);
-    values = [];
-    display();
-});
-                                                
 document.getElementById("equal").addEventListener('click', function() {
     update(values.join(""));
     values = [];
@@ -111,28 +93,5 @@ document.getElementById("clear").addEventListener('click', function() {
 
 
 
-
-
-
-
-//hold first number pressed
-
-
-//hold math function chosen
-
-//run math function when equal button is pressed 
-
-
-
-//var logNumber = function(e) {
-    //if(e.target !== e.currentTarget) {
-        //var clickedItem = e.target.id;
-        //console.log(clickedItem);
-    //}
-    //e.stopPropagation();
-//}
-
-//var numPad = document.querySelector("#num_pad");
-//numPad.addEventListener("click", logNumber, false);
 
 

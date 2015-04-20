@@ -17,6 +17,11 @@ var divide = function(a, b) {
 };
 
 var equals = function() {
+    if(inputs[0] === "80085" || inputs[2] === "80085") {
+       alert("how mature...");
+        clear();
+}
+    else {
     if (inputs[1] === "+") {
         var sum = add(parseFloat(inputs[0]), parseFloat(inputs[2]));
         clear();
@@ -38,9 +43,12 @@ var equals = function() {
         values.push(quotient);
     }
     display();
+    }
+    
 };
 
- //log and update inputs
+
+ //log number to choseNumbers array onclick
 
 var update = function(values) {
     inputs.push(values);
@@ -48,7 +56,7 @@ var update = function(values) {
 }
 
 var clear = function() {
-    inputs = [];
+    inputs = ["", "", ""];
     values = [];
     display();
 }
@@ -63,9 +71,10 @@ for(var i = 0; i < 10; i++) {
     document.getElementById(n).addEventListener('click', function() {
         values.push(this.innerHTML);
         display();
+        
     });
 }
-
+//fix with loop 
 var opElements = document.querySelectorAll(".op");
 
 for(var i = 0; i < opElements.length; i++) {
@@ -76,20 +85,22 @@ for(var i = 0; i < opElements.length; i++) {
         display();
     });
 }
-
-document.getElementById("point").addEventListener('click', function() {
-    values.push(this.innerHTML);
-    display();
-});
-
+                                                
 document.getElementById("equal").addEventListener('click', function() {
     update(values.join(""));
     values = [];
     equals();
 });
-document.getElementById("clear").addEventListener('click', function() {
-    clear();
+
+document.getElementById("clear").addEventListener('click', function() { clear(); });
+    
+document.getElementById("point").addEventListener('click', function() {
+    values.push(this.innerHTML);
+    display();
 });
+
+
+
 
 
 

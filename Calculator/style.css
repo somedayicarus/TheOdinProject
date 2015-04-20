@@ -12,10 +12,29 @@ body {
     color:#5b5b5b;
 }
 
+header {
+    width:380px;
+    margin:40px auto 0;
+    text-align: center;
+}
+
+a {
+    text-decoration:none;
+    color:#631299;
+    font-weight: 400;
+}
+footer {
+    width:380px;
+    margin:0 auto;
+    text-align: center;
+    font-size:18px;
+    line-height: 30px;
+    letter-spacing: .5px;
+}
 
 .container {
     width:380px;
-    margin:60px auto;
+    margin:20px auto;
     padding:20px 10px;
     background-color:#46eac1;
     border-radius:4px;
@@ -74,7 +93,7 @@ body {
     cursor: pointer;
 }
 
-.op:hover {
+.op:hover, #point:hover, #equal:hover {
     color:#606060;
     background-color:#fff;
     cursor:pointer;

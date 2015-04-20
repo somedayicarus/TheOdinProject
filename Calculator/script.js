@@ -1,9 +1,9 @@
 var result = document.getElementById("screen");
 var inputs = ["", "", ""];
-var chosenNum = [];
+var values = [];
 
 
-//basic math functions
+// math functions
 var add = function(a, b) {return a + b;};
 var multiply = function(a, b) {return a * b;};
 var subtract = function(a, b) {return a - b;};
@@ -20,119 +20,96 @@ var equals = function() {
     if (inputs[1] === "+") {
         var sum = add(parseFloat(inputs[0]), parseFloat(inputs[2]));
         clear();
-        chosenNum.push(sum);
+        values.push(sum);
     }
     else if(inputs[1] === "-") {
         var difference = subtract(parseFloat(inputs[0]), parseFloat(inputs[2]));
         clear();
-        chosenNum.push(difference);
+        values.push(difference);
     }
     else if(inputs[1] === "*") {
         var product = multiply(parseFloat(inputs[0]), parseFloat(inputs[2]));
         clear();
-        chosenNum.push(product);
+        values.push(product);
     }
     else if(inputs[1] === "%") {
         var quotient = divide(parseFloat(inputs[0]), parseFloat(inputs[2]));
         clear();
-        chosenNum.push(quotient);
+        values.push(quotient);
     }
     display();
 };
 
- //log number to choseNumbers array onclick
+ //store and update numbers
 
-var update = function(chosenNum) {
-    inputs.push(chosenNum);
+var update = function(values) {
+    inputs.push(values);
     inputs.shift();
 }
 
 var clear = function() {
     inputs = [];
-    chosenNum = [];
+    values = [];
     display();
 }
 
 var display = function() {
-    result.innerHTML = inputs.join(" ") + " " + chosenNum.join("");
+    result.innerHTML = inputs.join(" ") + " " + values.join("");
 }
 
 // event click listeners
 for(var i = 0; i < 10; i++) {
     var n = i.toString();
     document.getElementById(n).addEventListener('click', function() {
-        chosenNum.push(this.innerHTML);
+        values.push(this.innerHTML);
         display();
     });
 }
 
+
+//NOT DRY - fix
+
 document.getElementById("point").addEventListener('click', function() {
-    chosenNum.push(this.innerHTML);
+    values.push(this.innerHTML);
     display();
 });
 
 document.getElementById("plus").addEventListener('click', function() {
-    update(chosenNum.join(""));
+    update(values.join(""));
     update(this.innerHTML);
-    chosenNum = [];
+    values = [];
     display();
 });
                                                  
 document.getElementById("div").addEventListener('click', function() {
-    update(chosenNum.join(""));
+    update(values.join(""));
     update(this.innerHTML);
-    chosenNum = [];
+    values = [];
     display();
 });
                                                                                                   
 document.getElementById("minus").addEventListener('click', function() {
-    update(chosenNum.join(""));
+    update(values.join(""));
     update(this.innerHTML);
-    chosenNum = [];
+    values = [];
     display();
 });
 
                                                  
 document.getElementById("mult").addEventListener('click', function() {
-    update(chosenNum.join(""));
+    update(values.join(""));
     update(this.innerHTML);
-    chosenNum = [];
+    values = [];
     display();
 });
                                                 
 document.getElementById("equal").addEventListener('click', function() {
-    update(chosenNum.join(""));
-    chosenNum = [];
+    update(values.join(""));
+    values = [];
     equals();
 });
 document.getElementById("clear").addEventListener('click', function() {
     clear();
 });
-
-
-
-
-
-
-
-//hold first number pressed
-
-
-//hold math function chosen
-
-//run math function when equal button is pressed 
-
-
-
-//var logNumber = function(e) {
-    //if(e.target !== e.currentTarget) {
-        //var clickedItem = e.target.id;
-        //console.log(clickedItem);
-    //}
-    //e.stopPropagation();
-//}
-
-//var numPad = document.querySelector("#num_pad");
-//numPad.addEventListener("click", logNumber, false);
 
 

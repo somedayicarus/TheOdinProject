@@ -2,46 +2,49 @@
 $(document).ready(function() {
    $("#content").append("<img src='http://static.asiawebdirect.com/m/bangkok/hotels/bali-indonesia-com/villa-air-bali/photos/hotelBanner/photos.jpg'/>"); 
     $("#content").append("<h1>SELAMAT DATANG</h1>");
-    $("#content").append("<p>We are the premier restaurant in Bali!</p>");
+    $("#content").append("<p>Traditional Balinese Cuisine</p>");
 });
 
 //tabs
-var tabContainer = document.getElementById("tabs"); //ul 
-var tab = tabContainer.querySelector("li") // li
-var allContent = document.querySelectorAll(".tabContent");
-var allTabs = tabContainer.querySelectorAll("li");
- //1
+window.onload=function() {
 
-window.onload = function() {
-    var currentTab = tab.id.slice(-1);
-    console.log(currentTab); //1
+  // get tab container
+  	var container = document.getElementById("tabContainer");
+		var tabcon = document.getElementById("tabscontent");
+		//alert(tabcon.childNodes.item(1));
+    // set current tab
+    var navitem = document.getElementById("tabHeader_1");
+		
+    //store which tab we are on
+    var ident = navitem.id.split("_")[1];
+		//alert(ident);
+    navitem.parentNode.setAttribute("data-current",ident);
+    //set current tab with class of activetabheader
+    navitem.setAttribute("class","tabActiveHeader");
 
-        tab.setAttribute("data-current", currentTab); //<li data-current="1"></li>
-        //set current tab with class .activetab
-        tab.setAttribute("class", "activetab"); //< li data-current="1" class="activetab">
-    
-        //hide other tabs
-        for(var i = 1; i < allContent.length; i++) {
-            allContent[i].style.display="none";
-        }
-    
-        //add click event to tabs
-        for(var i = 0; i < allTabs.length; i++) {
-            allTabs[i].onclick = displayPage;
-        
-        }
+    //hide two tab contents we don't need
+   	 var pages = tabcon.getElementsByTagName("div");
+    	for (var i = 1; i < pages.length; i++) {
+     	 pages.item(i).style.display="none";
+		};
+
+    //this adds click event to tabs
+    var tabs = container.getElementsByTagName("li");
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].onclick=displayPage;
+    }
 }
 
-var displayPage = function() {
-    //on click of one of tabs
-    console.log(currentTab);
-    this.removeAttribute("class");
-  
-    //reset current tab
-    var currentTab = this.id.slice(-1);
-    //add class activetab
-    
-    this.setAttribute("class", "activetab");
-    this.setAttribute("data-current", currentTab);
-    console.log(currentTab);
+// on click of one of tabs
+function displayPage() {
+  var current = this.parentNode.getAttribute("data-current");
+  //remove class of activetabheader and hide old contents
+  document.getElementById("tabHeader_" + current).removeAttribute("class");
+  document.getElementById("tabpage_" + current).style.display="none";
+
+  var ident = this.id.split("_")[1];
+  //add class of activetabheader to new active tab and show contents
+  this.setAttribute("class","tabActiveHeader");
+  document.getElementById("tabpage_" + ident).style.display="block";
+  this.parentNode.setAttribute("data-current",ident);
 }
